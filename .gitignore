@@ -39,3 +39,6 @@ npm-debug.log*
 server/index.js
 server/index.js.map
 server/upload/
+/test-results/
+/playwright-report/
+/playwright/.cache/

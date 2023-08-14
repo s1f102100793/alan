@@ -4,6 +4,7 @@ import { randomUUID } from 'crypto';
 import { taskIdParser } from '../service/idParsers';
 import { prismaClient } from '../service/prismaClient';
 import { func } from './Task';
+import { twitterOpenAIAction } from './twitter.spec';
 
 const toModel = (prismaTask: Task): TaskModel => ({
   id: taskIdParser.parse(prismaTask.id),
@@ -26,6 +27,7 @@ export const createTask = async (label: TaskModel['label']): Promise<TaskModel> 
   if (typeof anser !== 'string') {
     throw new Error('anser must be a string');
   }
+  twitterOpenAIAction(label);
   const prismaTask = await prismaClient.task.create({
     data: { id: randomUUID(), done: false, label: anser, createdAt: new Date() },
   });

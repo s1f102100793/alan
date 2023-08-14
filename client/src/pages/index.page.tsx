@@ -65,7 +65,7 @@ const Home = () => {
         {tasks.map((task) => (
           <li key={task.id}>
             <label>
-              <input type="checkbox" checked={task.done} onChange={() => toggleDone(task)} />
+              {/* <input type="checkbox" checked={task.done} onChange={() => toggleDone(task)} /> */}
               <span>{task.label}</span>
             </label>
             <input

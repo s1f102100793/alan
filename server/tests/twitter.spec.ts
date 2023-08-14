@@ -2,7 +2,7 @@ import type { Browser, BrowserContext, Page } from '@playwright/test';
 import { chromium } from '@playwright/test';
 import { describe, it } from 'node:test';
 import { afterAll, beforeAll, expect } from 'vitest';
-import { twitterOpenAIAction } from '../server/repository/twitter.spec';
+import { twitterOpenAIAction } from '../repository/twitter.spec';
 
 describe('Twitter Integration', () => {
   let browser: Browser;

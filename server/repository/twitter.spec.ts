@@ -1,27 +1,27 @@
 import { chromium } from '@playwright/test';
-import axios from 'axios';
 
 export const twitterOpenAIAction = async (AAA: string) => {
   const TODO_NAME = AAA;
-  const apiEndpoint = 'https://api.openai.com/v1/chat/completions';
-  const apiKey = process.env.OPENAI_API_KEY;
-  const inputData = {
-    model: 'gpt-3.5-turbo',
-    messages: [
-      { role: 'system', content: 'Ready to brighten your day with some witty responses!' },
-      { role: 'user', content: `${TODO_NAME}専門家のツイート内容を1つ作成して、教えてください` },
-    ],
-  };
+  // const apiEndpoint = 'https://api.openai.com/v1/chat/completions';
+  // const apiKey = process.env.OPENAI_API_KEY;
+  // const inputData = {
+  //   model: 'gpt-3.5-turbo',
+  //   messages: [
+  //     { role: 'system', content: 'Ready to brighten your day with some witty responses!' },
+  //     { role: 'user', content: `${TODO_NAME}専門家のツイート内容を1つ作成して、教えてください` },
+  //   ],
+  // };
 
-  const response = await axios.post(apiEndpoint, inputData, {
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-    },
-  });
+  // const response = await axios.post(apiEndpoint, inputData, {
+  //   headers: {
+  //     Authorization: `Bearer ${apiKey}`,
+  //     'Content-Type': 'application/json',
+  //   },
+  // });
 
-  const message = response.data.choices[0]?.message;
+  // const message = response.data.choices[0]?.message;
   // console.log(message.content);
+  console.log(TODO_NAME)
   const browser = await chromium.launch({ headless: false });
   const context = await browser.newContext();
   const page = await context.newPage();
@@ -33,7 +33,7 @@ export const twitterOpenAIAction = async (AAA: string) => {
   await page.getByLabel('Password', { exact: true }).press('Enter');
   await page.getByTestId('SideNav_NewTweet_Button').click();
   await page.getByRole('textbox', { name: 'Tweet text' }).click();
-  await page.getByRole('textbox', { name: 'Tweet text' }).fill(message.content);
+  await page.getByRole('textbox', { name: 'Tweet text' }).fill(TODO_NAME);
   await page.getByTestId('tweetButton').click();
-  return message;
+  // return message;
 };

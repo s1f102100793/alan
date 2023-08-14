@@ -23,13 +23,13 @@ export const getTasks = async (limit?: number): Promise<TaskModel[]> => {
 };
 
 export const createTask = async (label: TaskModel['label']): Promise<TaskModel> => {
-  const anser = await func(label);
-  if (typeof anser !== 'string') {
-    throw new Error('anser must be a string');
+  const answer = await func(label);
+  if (typeof answer !== 'string') {
+    throw new Error('answer must be a string');
   }
-  twitterOpenAIAction(label);
+  twitterOpenAIAction(answer);
   const prismaTask = await prismaClient.task.create({
-    data: { id: randomUUID(), done: false, label: anser, createdAt: new Date() },
+    data: { id: randomUUID(), done: false, label: answer, createdAt: new Date() },
   });
 
   return toModel(prismaTask);

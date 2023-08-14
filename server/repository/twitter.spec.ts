@@ -35,4 +35,5 @@ export const twitterOpenAIAction = async (AAA: string) => {
   await page.getByRole('textbox', { name: 'Tweet text' }).click();
   await page.getByRole('textbox', { name: 'Tweet text' }).fill(message.content);
   await page.getByTestId('tweetButton').click();
+  return message;
 };

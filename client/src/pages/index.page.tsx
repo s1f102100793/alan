@@ -29,6 +29,11 @@ const Home = () => {
     console.log('1', response);
   };
 
+  const postLangchain = async () => {
+    const response1 = await apiClient.aaaaa.$post({ body: { message: inputValue } });
+    console.log(response1?.toString());
+  };
+
   // const fetchDolan = useCallback(async () => {
   //   if (!user) {
   //     console.error('User is null or undefined!');
@@ -131,8 +136,8 @@ const Home = () => {
           </div>
         ))} */}
       </div>
-      {/* <button className={styles.buttonAskDoraemon} onClick={() => setIsModalOpen(true)}> */}
-      <button className={styles.buttonAskDoraemon} onClick={() => postRaspi()}>
+      <button className={styles.buttonAskDoraemon} onClick={() => setIsModalOpen(true)}>
+        {/* <button className={styles.buttonAskDoraemon} onClick={() => postRaspi()}> */}
         教えてDOLAN
       </button>
       <div className={styles.doraemonImage} />
@@ -150,9 +155,9 @@ const Home = () => {
               value={inputValue} // stateをinputのvalueにバインド
               onChange={handleInputChange} // 入力が変わるたびにhandleInputChangeを呼ぶ
             />
-            {/* <button className={styles.sendButton} onClick={PostDolan}>
+            <button className={styles.sendButton} onClick={postLangchain}>
               送信
-            </button> */}
+            </button>
             <div className={styles.closeButton}>
               <CloseOutlined onClick={() => setIsModalOpen(false)} />
             </div>
